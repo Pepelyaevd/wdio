@@ -20,70 +20,61 @@ defineSupportCode(function({Given, When, Then}) {
     return browser.getText(xpath);
   });
 
-  Given('Я перехожу в систему ОПН http://test.tr.mos.ru', function() {
-    return this.driver.get('http://test.tr.mos.ru');
+  Given('Я перехожу в систему ОПН ({string})', function(text) {
+    browser.url('http://test.tr.mos.ru');
   });
 
-  // When('Я авторизовываюсь под логином "autotester" и паролем "WXic085aem35yw6t"', function () {
-  //   this.driver.findElement({id:'username'}).then(function(element) {
-  //     return element.sendKeys('autotester');
-  //   });
-  //   this.driver.findElement({id:'password'}).then(function(element) {
-  //     return element.sendKeys('WXic085aem35yw6t');
-  //   })
-  //   this.driver.findElement({id:'enterBtn'}).then(function(element) {
-  //     return element.click();
-  //   });
-  // });
+  When('Я авторизовываюсь под логином "autotester" и паролем "WXic085aem35yw6t"', function () {
+    browser.keys('autotester')
+      .click("#password")
+      .keys('WXic085aem35yw6t')
+      .click("#enterBtn");
+  });
 
-  // Then('Я попадаю на страницу выбора подсистем', function () {
-  //   var str = 'УНИО';
-  //   var xpath = "//*[contains(text(),'" + str + "')]";
-  //   var condition = seleniumWebdriver.until.elementLocated({xpath: xpath});
-  //   return this.driver.wait(condition, 2000);
-  // });
-  // When('Я перехожу по ссылке "Торговый сбор"', function () {
-  //   var str = 'Торговый сбор';
-  //   var xpath = "//a[div[contains(text(),'" + str + "')]]";
-  //   this.driver.findElement({xpath: xpath}).click();   
-  // });
+  Then('Я попадаю на страницу выбора подсистем', function () {
+    browser.waitForText('.system-title', 5000)  
+  });
 
-  // Then('Я ожидаю, что на странице содержится текст "У Вас нет доступа к этой странице"', function () {
-  //   var str = 'У Вас нет доступа к этой странице';
-  //   var xpath = "//*[contains(text(),'" + str + "')]";
-  //   var condition = seleniumWebdriver.until.elementLocated({xpath: xpath});
-  //   return this.driver.wait(condition, 5000);
-  // });
+  When('Я перехожу по ссылке "Торговый сбор"', function () {
+    var text = "Торговый сбор";
+    var xpath = "//a/div[text()='"+text+"']/..";
+    browser.click(xpath);
+  });
 
-  // When('Я выбираю в меню раздел "ОТЧЕТЫ"', function () {
-  //   var str = 'ОТЧЕТЫ';
-  //   var xpath = "//*[contains(text(),'" + str + "')]";
-  //   return this.driver.findElement({xpath: xpath}).click();  
-  // });
-  // When('Я выбираю в меню раздел "Отчеты о проведении обходов"', function () {
-  //   var str = 'Отчеты о проведении обходов';
-  //   var xpath = "//*[contains(text(),'" + str + "')]";
-  //   elem = this.driver.findElement({xpath: xpath}); 
-  //   this.driver.actions().mouseMove(elem).perform();
-  // });
+  Then('Я ожидаю, что на странице содержится текст "У Вас нет доступа к этой странице"', function () {
+    var str = "У Вас нет доступа к этой странице";
+    var xpath = "//*[text()='" + str + "']";
+    browser.pause(5000);
+    browser.waitForText(xpath, 7000);
+  });
 
-  //   When('Я выбираю в меню раздел "Отчеты о состоянии обходов за период"', function () {
-  //   var str = 'Отчеты о состоянии обходов за период';
-  //   var xpath = "//*[contains(text(),'" + str + "')]";
-  //   this.driver.findElement({xpath: xpath}).click(); 
-  //   this.driver.sleep(1000);
-  // });
-  //  Then('Я ожидаю, что на странице содержится текст "Статистический отчет о количестве объектов, находящихся на этапах бизнес - процесса за период c <текущая дата> по <текущая дата>"', function () {
-  //   var xpath = "//*[contains(text(),'Статистический')]";
-  //   var condition = seleniumWebdriver.until.elementLocated({xpath: xpath});
-  //   return this.driver.wait(condition, 5000);
-  // });
-  //   Then('Я ожидаю, что на странице содержится текст "Всего объектов на уровне обходчиков ГКУ МКМЦН"', function () {
-  //   var str = 'Всего объектов на уровне обходчиков ГКУ МКМЦН';
-  //   var xpath = "//*[contains(text(),'" + str + "')]";
-  //   var condition = seleniumWebdriver.until.elementLocated({xpath: xpath});
-  //   this.driver.wait(condition, 5000); 
-  // });
+  When('Я выбираю в меню раздел "ОТЧЕТЫ"', function () {
+    var str = 'ОТЧЕТЫ';
+    var xpath = "//*[text()='" + str + "']";
+    browser.click(xpath); 
+  });
+  When('Я выбираю в меню раздел "Отчеты о проведении обходов"', function () {
+    var str = 'Отчеты о проведении обходов';
+    var xpath = "//*[text()='" + str + "']";
+    browser.moveToObject(xpath); 
+  });
+
+    When('Я выбираю в меню раздел "Отчеты о состоянии обходов за период"', function () {
+    var str = 'Отчеты о состоянии обходов за период';
+    var xpath = "//*[text()='" + str + "']";
+    browser.click(xpath);
+
+  });
+   Then('Я ожидаю, что на странице содержится текст "Статистический отчет о количестве объектов, находящихся на этапах бизнес - процесса за период c <текущая дата> по <текущая дата>"', function () {
+    var str = "Статистический отчет о количестве объектов, находящихся на этапах бизнес";
+    var xpath = "//label[contains(.,'" + str + "')]";
+    browser.waitForText(xpath, 7000);
+  });
+    Then('Я ожидаю, что на странице содержится текст "Всего объектов на уровне обходчиков ГКУ МКМЦН"', function () {
+    var str = 'Всего объектов на уровне обходчиков ГКУ МКМЦН';
+    var xpath = "//*[text()='" + str + "']";
+    browser.waitForText(xpath, 1000); 
+  });
 
 
 });
