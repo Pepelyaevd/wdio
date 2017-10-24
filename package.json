@@ -6,7 +6,7 @@
   "scripts": {
     "test": "./node_modules/.bin/wdio wdio.conf.js"
   },
-  "author": "",
+  "author": "Pepelyaev Dmitriy",
   "license": "ISC",
   "devDependencies": {
     "wdio-allure-reporter": "^0.1.2",

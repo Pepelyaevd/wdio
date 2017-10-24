@@ -132,13 +132,12 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: http://webdriver.io/guide/testrunner/reporters.html
-    // reporters: ['allure'],
-    // reporterOptions: {
-    //     allure: {
-    //         outputDir: 'allure-results'
-    //     }
-    // },
-    //
+    reporters: ['allure'],
+    reporterOptions: {
+        allure: {
+            outputDir: 'allure-results'
+        }
+    },
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
         require: ['./features/step-definitions/browser_steps.js'],        // <string[]> (file/dir) require files before executing features
@@ -153,8 +152,8 @@ exports.config = {
         profile: [],        // <string[]> (name) specify the profile to use
         strict: false,      // <boolean> fail if there are any undefined or pending steps
         tags: [],           // <string[]> (expression) only execute the features or scenarios with tags matching the expression
-        timeout: 20000,     // <number> timeout for step definitions
-        ignoreUndefinedDefinitions: true, // <boolean> Enable this config to treat undefined definitions as warnings.
+        timeout: 30000,     // <number> timeout for step definitions
+        ignoreUndefinedDefinitions: false, // <boolean> Enable this config to treat undefined definitions as warnings.
     },
     
     //
