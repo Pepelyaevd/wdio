@@ -5,7 +5,7 @@ WDIO project
 ## Requirements
 
 - chrome browser
-- selenium-standalone installed as global LINK(https://github.com/vvo/selenium-standalone)
+- selenium-standalone installed as global [LINK](https://github.com/vvo/selenium-standalone)
 
 ## Quick start
 
