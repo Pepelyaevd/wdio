@@ -22,4 +22,5 @@ Selenium will be started automatically by wdio-selenium-standalone-service
 ## Results
 
 Error screenshots: /errorShots
+
 Allure files: /allure-results
