@@ -9,8 +9,6 @@ WDIO project
 
 ## Quick start
 
-Choose one of the following options:
-
 1. Clone the git repo — `https://github.com/Pepelyaevd/wdio.git`
 
 2. Install the dependencies (`npm install`)
